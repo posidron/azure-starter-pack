@@ -2,43 +2,72 @@
 
 Various concepts related to Azure for learning purposes.
 
-## Bicep
 
-```
---parameters @main.parameters.json
---parameters https://example.com/main.parameters.json
---parameters myParam1='myValue1' myParam2='myValue2'
---parameters myParam=@paramfile.txt
-```
+## Setup Azure Function Tools on ARM64
 
-```
-// main.bicep
-param storageAccountName string
-param location string = resourceGroup().location
+`Rossetta` emulates to AMD64.
+`arch64` runs the universal binary - if it has been installed.
 
-resource stg 'Microsoft.Storage/storageAccounts@2021-04-01' = {
-  name: storageAccountName
-  location: location
-  sku: {
-    name: 'Standard_LRS'
-  }
-  kind: 'StorageV2'
-}
+```shell
+echo Rosetta is $(arch -x86_64 /usr/bin/true || echo not) installed
+softwareupdate --install-rosetta --agree-to-license
+
+arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval "$(/usr/local/bin/brew shellenv)"
 ```
 
-```
-// main.parameters.json
-{
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "storageAccountName": { // Reflects parameter name inside the main.bicep
-      "value": "stcontoso"
-    }
-  }
-}
+```shell
+# ~/.config/fish/config.fish
+if [ (arch) = "i386" ]
+  echo "Mode: i386"
+  eval (/usr/local/bin/brew shellenv)
+  set PATH "/usr/local/bin:$PATH"
+end
+if [ (arch) = "arm64" ]
+  echo "Mode: arm64"
+  eval (/opt/homebrew/bin/brew shellenv)
+  set PATH "/opt/homebrew/bin:/usr/local/bin:$PATH"
+end
 ```
 
-* Decompile to ARM template: `bicep build main.bicep`
-* Playground: https://bicepdemo.z22.web.core.windows.net
-* KeyVault: https://ochzhen.com/blog/key-vault-secrets-as-parameters-azure-bicep
+Make a copy of iTerm2.app, name it "iTerm2-Rosetta.app" and enable Rosetta in the preferences, then
+open it.
+
+```shell
+brew tap azure/functions
+brew install python azure-functions-core-tools@4
+```
+
+```shell
+export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1
+
+arch -x86_64 pyenv install 3.9.16
+arch -x86_64 pyenv local 3.9.16
+```
+
+```shell
+python -m venv .venv
+source .venv/bin/activate.fish # or pipenv shell --python 3.9.16
+```
+
+```shell
+mkdir fastapiapp
+python -m pip install --upgrade pip
+pip install fastapi
+
+func init api --python
+cd api
+func new --name main --template "HTTP trigger"
+func start
+...
+```
+
+
+## Authenticate
+
+```
+az login
+az account set --subscription "Visual Studio Enterprise Subscription"
+az config param-persist on # Saves "rg" and "location" parameters.
+az account list-locations
+```
