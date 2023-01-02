@@ -2,7 +2,7 @@
 
 set location "eastus"
 set resourceGroup "demo-aci-k8-rg"
-set acrName "demoaci002"
+set acrName "demoaci002" # Needs adjustment in the application.yaml and docker-compose.yaml.
 set acrSKU "Basic"
 set aksName "myAKSCluster"
 
@@ -44,7 +44,11 @@ sleep 120
 
 echo "🚀 Checking application ..."
 kubectl get pods
-kubectl describe pod -A
+# kubectl describe pod -A
+
+echo "🚀 Scaling application ..."
+# kubectl scale --replicas=3 deployment/frontend
+# kubectl set image deployment frontend frontend=$acrName.azurecr.io/compose-frontend:2.0.0
 
 echo "☠️ Deleting resource group '$resourceGroup' ..."
 az group delete --name $resourceGroup --yes --no-wait
