@@ -18,7 +18,7 @@ set skuPlan "B1"
 
 # Builds on M1 ARM and Azure does not really know what that means.
 docker buildx build --platform linux/amd64 -t $acr.azurecr.io/$imageName:$imageVersion -f example/Dockerfile .
-docker --platform linux/amd64 run -p 8080:80 -it $imageName:$imageVersion
+docker --platform linux/amd64 run -p 8080:80 --rm -t $imageName:$imageVersion
 
 az login
 az account set --subscription "Visual Studio Enterprise Subscription"
@@ -26,7 +26,6 @@ az config param-persist on  # Saves "rg" and "location" parameters.
 
 echo "🚀 Creating resource group $resourceGroup in $location ..."
 az group create --name $resourceGroup --location $location
-az config param-persist on
 
 echo "🚀 Creating container registry $acr in $resourceGroup ..."
 az acr create \
