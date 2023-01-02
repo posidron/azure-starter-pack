@@ -17,7 +17,7 @@ set appServicePlan "scraper-app-service-plan"
 set skuPlan "B1"
 
 # Builds on M1 ARM and Azure does not really know what that means.
-docker buildx build --platform linux/amd64 -t posidron.azurecr.io/$imageName:$imageVersion .
+docker buildx build --platform linux/amd64 -t $acr.azurecr.io/$imageName:$imageVersion -f example/Dockerfile .
 docker --platform linux/amd64 run -p 8080:80 -it $imageName:$imageVersion
 
 az login
