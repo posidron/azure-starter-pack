@@ -71,3 +71,9 @@ az account set --subscription "Visual Studio Enterprise Subscription"
 az config param-persist on # Saves "rg" and "location" parameters.
 az account list-locations
 ```
+
+
+## Interesting Resources
+
+* https://github.com/Azure-Samples/azure-cli-samples
+* https://github.com/checkly/puppeteer-examples
