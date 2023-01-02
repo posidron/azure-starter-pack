@@ -65,7 +65,7 @@ func start
 
 ## Authenticate
 
-```
+```shell
 az login
 az account set --subscription "Visual Studio Enterprise Subscription"
 az config param-persist on # Saves "rg" and "location" parameters.
