@@ -39,6 +39,6 @@ resource stg 'Microsoft.Storage/storageAccounts@2021-04-01' = {
 }
 ```
 
-Decompile to ARM template: `bicep build main.bicep`
-Playground: https://bicepdemo.z22.web.core.windows.net
-KeyVault: https://ochzhen.com/blog/key-vault-secrets-as-parameters-azure-bicep
+* Decompile to ARM template: `bicep build main.bicep`
+* Playground: https://bicepdemo.z22.web.core.windows.net
+* KeyVault: https://ochzhen.com/blog/key-vault-secrets-as-parameters-azure-bicep
