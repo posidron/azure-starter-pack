@@ -4,13 +4,12 @@ Various concepts related to Azure for learning purposes.
 
 ## Bicep
 
+```
 --parameters @main.parameters.json
 --parameters https://example.com/main.parameters.json
 --parameters myParam1='myValue1' myParam2='myValue2'
 --parameters myParam=@paramfile.txt
-
-param storageAccountName string
-param location string = resourceGroup().location
+```
 
 ```
 // main.bicep
@@ -42,5 +41,4 @@ resource stg 'Microsoft.Storage/storageAccounts@2021-04-01' = {
 
 Decompile to ARM template: `bicep build main.bicep`
 Playground: https://bicepdemo.z22.web.core.windows.net
-
 KeyVault: https://ochzhen.com/blog/key-vault-secrets-as-parameters-azure-bicep
