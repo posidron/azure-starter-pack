@@ -6,7 +6,7 @@ Various concepts related to Azure for learning purposes.
 ## Setup Azure Function Tools on ARM64
 
 `Rossetta` emulates to AMD64.
-`arch64` runs the universal binary - if it has been installed.
+`arch64` runs either the universal binary or an ARM64 binary in an AMD64 context.
 
 ```shell
 echo Rosetta is $(arch -x86_64 /usr/bin/true || echo not) installed
