@@ -29,4 +29,4 @@ set ipaddr (az vm list-ip-addresses \
 echo "⚠️ Run: ssh $vmUser@$ipaddr"
 
 echo "☠️ Deleting resource group $resourceGroup ..."
-az group delete --name $resourceGroup --yes
+az group delete --name $resourceGroup --yes --no-wait
