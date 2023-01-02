@@ -5,11 +5,11 @@ properties:
   containers:
     - name: demogpucontainer
       properties:
-        image: k8s-gcrio.azureedge.net/cuda-vector-add:v0.1
+        image: runpod/stable-diffusion:invoke-1.5.2
         resources:
           requests:
-            cpu: 1.0
-            memoryInGB: 1.5
+            cpu: 2.0
+            memoryInGB: 4
             gpu:
               count: 1
               sku: K80

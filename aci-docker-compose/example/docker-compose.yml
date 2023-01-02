@@ -1,0 +1,15 @@
+version: "3.1"
+services:
+  nodejs:
+    container_name: frontend
+    image: posidron.azurecr.io/compose-frontend:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+  redis:
+    container_name: backend
+    image: redis:alpine

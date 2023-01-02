@@ -36,6 +36,6 @@ az container logs --resource-group $resourceGroup --name $acrContainerName
 az container attach --resource-group $resourceGroup --name $acrContainerName
 
 echo "☠️ Deleting container $acrContainerName in $resourceGroup ..."
-az container delete --resource-group $resourceGroup --name $acrContainerName --yes
+#az container delete --resource-group $resourceGroup --name $acrContainerName --yes
 echo "☠️ Deleting resource group $resourceGroup ..."
-az group delete --resource-group $resourceGroup --yes --no-wait
+#az group delete --resource-group $resourceGroup --yes --no-wait
