@@ -48,7 +48,17 @@ kubectl get pods
 
 echo "🚀 Scaling application ..."
 # kubectl scale --replicas=3 deployment/frontend
+
+echo "🚀 Deploy an updated application ..."
+# Requires "docker-compose build" && "docker tag" prior.
 # kubectl set image deployment frontend frontend=$acrName.azurecr.io/compose-frontend:2.0.0
+# kubectl get service frontend
+
+echo "🚀 Manual scale AKS nodes ..."
+# az aks scale --resource-group $resourceGroup --name $aksName --node-count 3
+
+echo "🚀 Set autoscale options ..."
+# kubectl autoscale deployment frontend --cpu-percent=50 --min=3 --max=10
 
 echo "☠️ Deleting resource group '$resourceGroup' ..."
 az group delete --name $resourceGroup --yes --no-wait
