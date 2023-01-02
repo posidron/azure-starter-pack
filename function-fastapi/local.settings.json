@@ -1,0 +1,10 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName=stdemofuncapp;AccountKey=JcqrDBigBgjvCwXPyxCfn0jIuO9YFRT97QUznDG+oho2EyxqOW5yj2Sa2I9V40JHNTBxbXMWiI3r+AStvxFLAw==",
+    "FUNCTIONS_EXTENSION_VERSION": "~4",
+    "APPINSIGHTS_INSTRUMENTATIONKEY": "778fc554-102f-468d-94b9-dc35b1a9b3b6"
+  },
+  "ConnectionStrings": {}
+}
