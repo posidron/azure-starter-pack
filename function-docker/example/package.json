@@ -1,0 +1,27 @@
+{
+  "name": "scrape-func-app",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "prestart": "npm run build",
+    "start": "func start",
+    "start-azurite": "azurite --silent --location azureStorage --debug tmp/debug.log"
+  },
+  "dependencies": {
+    "@azure/data-tables": "^13.2.0",
+    "@azure/storage-blob": "^12.12.0",
+    "playwright-chromium": "^1.29.1",
+    "playwright-extra": "^4.3.5",
+    "puppeteer-extra-plugin-stealth": "^2.11.1",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@azure/functions": "^3.0.0",
+    "@types/node": "16.x",
+    "@types/puppeteer": "^7.0.4",
+    "azure-functions-core-tools": "^4.x",
+    "typescript": "^4.0.0"
+  }
+}
