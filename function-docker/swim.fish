@@ -1,8 +1,8 @@
 nvm use 16
 
-func init --worker-runtime node --language typescript --docker
-func new --name trigger --template "HTTP trigger" --authlevel anonymous
-func start
+# func init --worker-runtime node --language typescript --docker
+# func new --name screenshot --template "HTTP trigger" --authlevel anonymous
+# func start
 
 set imageName "scraper-app"
 set imageVersion "1.0.6"
