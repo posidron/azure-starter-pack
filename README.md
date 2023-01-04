@@ -62,7 +62,6 @@ func start
 ...
 ```
 
-
 ## Authenticate
 
 ```shell
@@ -72,6 +71,28 @@ az config param-persist on # Saves "rg" and "location" parameters.
 az account list-locations
 ```
 
+## Service Principal vs Managed Identity
+
+**Scope**: Service principals are created in Azure AD and are used to authenticate applications and services when they access Azure resources. Managed identities, on the other hand, are used to authenticate Azure resources when they access other Azure resources or services.
+
+**Creation & Management**: Service principals are created and managed in Azure AD, whereas managed identities are created and managed by Azure.
+
+**Lifetime**: Service principals have a fixed lifetime, and they must be manually created, updated, and deleted. Managed identities, on the other hand, are created and deleted automatically when the associated resource is created or deleted.
+
+**Service Principle**
+```shell
+az group create -l eastus2 -n $resourceGroup
+az ad sp create-for-rbac \
+  -n $resourceGroup \
+  --role contributor \
+  --scopes "/subscriptions/$(az account show --query id --output tsv)"
+```
+
+**Managed Identity**
+```shell
+az identity create --name $resourceGroup-identity --resource-group $resourceGroup # System-assigned
+az identity create --name $resourceGroup-identity --assign-identity               # User-assigned
+```
 
 ## Interesting Resources
 
